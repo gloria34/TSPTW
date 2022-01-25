@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import dnu.fpm.tsptw.databinding.FragmentMapBinding
 
-class MapFragment : Fragment() {
+class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mapViewModel: MapViewModel
     private var _binding: FragmentMapBinding? = null
@@ -25,17 +26,27 @@ class MapFragment : Fragment() {
             ViewModelProvider(this).get(MapViewModel::class.java)
 
         _binding = FragmentMapBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textHome
-        mapViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initMap()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    private fun initMap() {
+        binding.campsMapView.onCreate(arguments)
+        binding.campsMapView.onResume()
+        binding.campsMapView.getMapAsync(this)
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+
     }
 }
