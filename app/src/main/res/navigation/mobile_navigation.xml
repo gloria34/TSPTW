@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_map">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="dnu.fpm.tsptw.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_map"
+        android:name="dnu.fpm.tsptw.ui.map.MapFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="dnu.fpm.tsptw.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_data_set_list"
+        android:name="dnu.fpm.tsptw.ui.dataset.list.DataSetListFragment"
+        android:label="@string/menu_select_data_set"
+        tools:layout="@layout/fragment_data_set_list" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="dnu.fpm.tsptw.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_create_data_set"
+        android:name="dnu.fpm.tsptw.ui.dataset.create.CreateDataSetFragment"
+        android:label="@string/menu_create_data_set"
+        tools:layout="@layout/fragment_create_data_set" />
 </navigation>

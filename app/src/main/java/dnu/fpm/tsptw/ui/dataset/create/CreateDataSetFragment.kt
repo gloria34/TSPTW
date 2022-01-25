@@ -1,4 +1,4 @@
-package dnu.fpm.tsptw.ui.slideshow
+package dnu.fpm.tsptw.ui.dataset.create
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,33 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import dnu.fpm.tsptw.R
-import dnu.fpm.tsptw.databinding.FragmentSlideshowBinding
+import dnu.fpm.tsptw.databinding.FragmentCreateDataSetBinding
 
-class SlideshowFragment : Fragment() {
+class CreateDataSetFragment : Fragment() {
 
-    private lateinit var slideshowViewModel: SlideshowViewModel
-    private var _binding: FragmentSlideshowBinding? = null
+    private lateinit var createDataSetViewModel: CreateDataSetViewModel
+    private var _binding: FragmentCreateDataSetBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+    ): View {
+        createDataSetViewModel =
+            ViewModelProvider(this).get(CreateDataSetViewModel::class.java)
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateDataSetBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
+        createDataSetViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root
