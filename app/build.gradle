@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -29,8 +30,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -50,4 +51,7 @@ dependencies {
 
     //map
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
+    //data binding
+    kapt "com.android.databinding:compiler:3.2.0-alpha10"
 }

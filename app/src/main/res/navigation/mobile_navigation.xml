@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_map"
-        android:name="dnu.fpm.tsptw.ui.map.MapFragment"
+        android:name="dnu.fpm.tsptw.ui.fragment.map.MapFragment"
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/nav_data_set_list"
-        android:name="dnu.fpm.tsptw.ui.dataset.list.DataSetListFragment"
+        android:name="dnu.fpm.tsptw.ui.fragment.dataset.list.DataSetListFragment"
         android:label="@string/menu_select_data_set"
         tools:layout="@layout/fragment_data_set_list" />
 
     <fragment
         android:id="@+id/nav_create_data_set"
-        android:name="dnu.fpm.tsptw.ui.dataset.create.CreateDataSetFragment"
+        android:name="dnu.fpm.tsptw.ui.fragment.dataset.create.CreateDataSetFragment"
         android:label="@string/menu_create_data_set"
         tools:layout="@layout/fragment_create_data_set" />
 </navigation>

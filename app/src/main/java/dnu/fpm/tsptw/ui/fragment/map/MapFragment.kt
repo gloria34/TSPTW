@@ -1,4 +1,4 @@
-package dnu.fpm.tsptw.ui.map
+package dnu.fpm.tsptw.ui.fragment.map
 
 import android.os.Bundle
 import android.view.LayoutInflater
