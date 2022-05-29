@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import dnu.fpm.tsptw.R
 import dnu.fpm.tsptw.databinding.FragmentHomeBinding
 import dnu.fpm.tsptw.ui.base.BaseFragment
 
@@ -23,5 +25,8 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.createNewTripButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_createNewTripFragment)
+        }
     }
 }

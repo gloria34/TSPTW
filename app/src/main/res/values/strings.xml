@@ -2,4 +2,8 @@
     <string name="app_name">TSPTW</string>
     <string name="home">Номе</string>
     <string name="create_new_trip">Create new trip</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="save">Save</string>
+    <string name="trip_name">Trip name</string>
 </resources>

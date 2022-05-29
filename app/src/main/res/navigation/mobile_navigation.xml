@@ -14,5 +14,13 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="dnu.fpm.tsptw.ui.fragment.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_createNewTripFragment"
+            app:destination="@id/createNewTripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNewTripFragment"
+        android:name="dnu.fpm.tsptw.ui.fragment.createnewtrip.CreateNewTripFragment"
+        android:label="CreateNewTripFragment" />
 </navigation>
