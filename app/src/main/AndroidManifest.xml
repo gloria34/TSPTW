@@ -15,7 +15,7 @@
             android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.TSPTW.NoActionBar">
+            android:theme="@style/Theme.TSPTW">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

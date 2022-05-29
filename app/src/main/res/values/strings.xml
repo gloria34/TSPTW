@@ -1,12 +1,3 @@
 <resources>
     <string name="app_name">TSPTW</string>
-    <string name="menu_map">Map</string>
-    <string name="menu_select_data_set">Select data</string>
-    <string name="menu_create_data_set">Create data</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="name">Name</string>
-    <string name="time_from">Time from</string>
-    <string name="time_to">Time to</string>
-    <string name="plus">Plus</string>
 </resources>
