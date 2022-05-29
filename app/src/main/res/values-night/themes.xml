@@ -3,8 +3,8 @@
     <style name="Theme.TSPTW" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/dark_violet</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:statusBarColor">@color/dark_violet</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="background">@color/dark_violet</item>
         <item name="cardCornerRadius">@dimen/radius_10</item>
         <item name="cardBackgroundColor">@color/light_violet</item>

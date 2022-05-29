@@ -1,20 +1,21 @@
 package dnu.fpm.tsptw.ui.fragment.splash
 
-import android.location.Location
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
-import dnu.fpm.tsptw.data.model.Point
+import dnu.fpm.tsptw.R
 import dnu.fpm.tsptw.databinding.FragmentSplashBinding
 import dnu.fpm.tsptw.helpers.AntTsp
+import dnu.fpm.tsptw.ui.base.BaseFragment
 
 
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment() {
     lateinit var binding: FragmentSplashBinding
     lateinit var viewModel: SplashViewModel
     override fun onCreateView(
@@ -40,7 +41,8 @@ class SplashFragment : Fragment() {
         val anttsp = AntTsp()
         anttsp.readGraph(distances(points))
         anttsp.solve()
-       // binding.test.text = anttsp.bestTourLength.toString() + " " + anttsp.bestTour.toString()
+        Handler().postDelayed({ findNavController().navigate(R.id.action_splashFragment_to_homeFragment) }, 3000)
+        // binding.test.text = anttsp.bestTourLength.toString() + " " + anttsp.bestTour.toString()
     }
 
     fun distances(points: ArrayList<LatLng>): String {
