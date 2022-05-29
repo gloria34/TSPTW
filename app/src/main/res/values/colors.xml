@@ -5,4 +5,8 @@
     <color name="yellow_500">#FFEB3B</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_violet">#6F61B4</color>
+    <color name="light_violet">#8D82C7</color>
+    <color name="rose">#FE85AB</color>
+    <color name="light_grey">#F2F2F6</color>
 </resources>

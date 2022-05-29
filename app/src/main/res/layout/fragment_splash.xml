@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/background">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="splash" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="337dp"
+            android:layout_height="215dp"
+            android:src="@drawable/ic_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

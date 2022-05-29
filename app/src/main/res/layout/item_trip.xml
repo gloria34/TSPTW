@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_10"
+        android:layout_marginVertical="@dimen/margin_10">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/padding_18"
+            android:paddingVertical="@dimen/padding_12">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_calendar"
+                android:drawablePadding="@dimen/padding_12"
+                android:drawableTint="?attr/iconTint"
+                android:text="12 may 2022" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12"
+                android:drawableStart="@drawable/ic_reorder"
+                android:drawablePadding="@dimen/padding_12"
+                android:drawableTint="?attr/iconTint"
+                android:text="Test tracking trip" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/RegularText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12"
+                android:drawableStart="@drawable/ic_marker"
+                android:drawablePadding="@dimen/padding_12"
+                android:drawableTint="?attr/iconTint"
+                android:text="Åbacken 9, 923 41 Stensele, Швеція" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="@dimen/margin_12"
+                android:src="@drawable/ic_more"
+                android:tint="?attr/iconTint" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/RegularText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12"
+                android:drawableStart="@drawable/ic_marker"
+                android:drawablePadding="@dimen/padding_12"
+                android:drawableTint="?attr/iconTint"
+                android:text="270, 923 95 Kittelfjäll, Швеція" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+</layout>

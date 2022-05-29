@@ -40,7 +40,7 @@ class SplashFragment : Fragment() {
         val anttsp = AntTsp()
         anttsp.readGraph(distances(points))
         anttsp.solve()
-        binding.test.text = anttsp.bestTourLength.toString() + " " + anttsp.bestTour.toString()
+       // binding.test.text = anttsp.bestTourLength.toString() + " " + anttsp.bestTour.toString()
     }
 
     fun distances(points: ArrayList<LatLng>): String {
