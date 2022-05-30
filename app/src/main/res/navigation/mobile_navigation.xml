@@ -23,4 +23,8 @@
         android:id="@+id/createNewTripFragment"
         android:name="dnu.fpm.tsptw.ui.fragment.createnewtrip.CreateNewTripFragment"
         android:label="CreateNewTripFragment" />
+    <fragment
+        android:id="@+id/tripListFragment"
+        android:name="dnu.fpm.tsptw.ui.fragment.triplist.TripListFragment"
+        android:label="TripListFragment" />
 </navigation>

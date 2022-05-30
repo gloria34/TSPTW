@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/month_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_12"
+        android:background="@drawable/bg_month_unchecked"
+        android:paddingHorizontal="@dimen/padding_12"
+        android:paddingVertical="3dp"
+        android:text="May" />
+</layout>

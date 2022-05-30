@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/background">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_text_view"
+            style="@style/Subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24"
+            android:gravity="center"
+            android:text="@string/trip_list"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/top_view"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="@dimen/margin_24"
+            android:background="?attr/cardBackgroundColor"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/months_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/top_view"
+            tools:listitem="@layout/item_month" />
+
+        <View
+            android:id="@+id/bottom_view"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="20dp"
+            android:background="?attr/cardBackgroundColor"
+            app:layout_constraintTop_toBottomOf="@id/months_recycler_view" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_12"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottom_view"
+            tools:listitem="@layout/item_trip" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

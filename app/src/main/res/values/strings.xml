@@ -8,4 +8,5 @@
     <string name="trip_name">Trip name</string>
     <string name="date">Date</string>
     <string name="add_new_point">Add new point</string>
+    <string name="trip_list">Trip list</string>
 </resources>
