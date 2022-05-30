@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dnu.fpm.tsptw.R
 import dnu.fpm.tsptw.data.entity.DataSet
+import dnu.fpm.tsptw.data.model.Point
 import dnu.fpm.tsptw.databinding.FragmentTripListBinding
 import dnu.fpm.tsptw.ui.adapter.OnTripClickListener
 import dnu.fpm.tsptw.ui.adapter.TripsAdapter
@@ -31,7 +32,11 @@ class TripListFragment : BaseFragment() {
         val trips = ArrayList<DataSet>()
         trips.add(
             DataSet(
-                points = arrayListOf()
+                points = arrayListOf(Point(30.233417, -92.101965, false),
+                    Point(30.233155, -92.014507, false),
+                    Point(30.201409, -91.999563, false),
+                    Point(30.167296, -92.036249, false),
+                    Point(30.109821, -92.240990, false))
             )
         )
         binding.tripsRecyclerView.adapter = TripsAdapter(trips, object : OnTripClickListener {
