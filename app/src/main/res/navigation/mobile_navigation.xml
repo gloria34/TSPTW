@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createNewTripFragment"
             app:destination="@id/createNewTripFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tripFragment"
+            app:destination="@id/tripFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNewTripFragment"
@@ -26,5 +29,13 @@
     <fragment
         android:id="@+id/tripListFragment"
         android:name="dnu.fpm.tsptw.ui.fragment.triplist.TripListFragment"
-        android:label="TripListFragment" />
+        android:label="TripListFragment" >
+        <action
+            android:id="@+id/action_tripListFragment_to_tripFragment"
+            app:destination="@id/tripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripFragment"
+        android:name="dnu.fpm.tsptw.ui.fragment.trip.TripFragment"
+        android:label="TripFragment" />
 </navigation>
