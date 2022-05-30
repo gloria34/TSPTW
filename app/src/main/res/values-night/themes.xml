@@ -12,6 +12,7 @@
         <item name="iconTint">@color/rose</item>
         <item name="strokeColor">@color/white</item>
         <item name="editTextColor">@color/white</item>
+        <item name="boxStrokeColor">@color/white</item>
     </style>
 
     <style name="Title">

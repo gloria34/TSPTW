@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import dnu.fpm.tsptw.data.model.Point
 import dnu.fpm.tsptw.databinding.FragmentCreateNewTripBinding
 import dnu.fpm.tsptw.ui.base.BaseFragment
 
@@ -23,5 +24,35 @@ class CreateNewTripFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val points: ArrayList<Point> = arrayListOf(Point(0.0, 0.0, false))
+        binding.pointsRecyclerView.adapter = CreateNewTripAdapter(
+            points,
+            object : OnChangePointListener {
+                override fun onDeletePoint(position: Int) {
+                    points.removeAt(position)
+                }
+
+                override fun onUpdateLatitude(latitude: String, position: Int) {
+                    try {
+                        points[position].latitude = latitude.toDouble()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        points[position].latitude = 0.0
+                    }
+                }
+
+                override fun onUpdateLongitude(longitude: String, position: Int) {
+                    try {
+                        points[position].longitude = longitude.toDouble()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        points[position].longitude = 0.0
+                    }
+                }
+
+                override fun onAddNewPoint() {
+                    points.add(Point(0.0, 0.0, false))
+                }
+            })
     }
 }
