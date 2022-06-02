@@ -44,6 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/latitude"
+                        android:maxLength="10"
                         android:inputType="number"
                         android:textColor="?attr/editTextColor"
                         android:textColorHint="?attr/strokeColor" />
@@ -69,6 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/longitude"
+                        android:maxLength="10"
                         android:inputType="number"
                         android:textColor="?attr/editTextColor"
                         android:textColorHint="?attr/strokeColor" />

@@ -19,8 +19,17 @@ object DateUtils {
         }
     }
 
-    fun convertDpToPixel(dp: Float, context: Context): Float {
-        return dp * (context.resources.displayMetrics.densityDpi.toFloat()
-                / DisplayMetrics.DENSITY_DEFAULT)
+    @SuppressLint("SimpleDateFormat")
+    fun currentDate(): String {
+        val dateFormat = SimpleDateFormat("dd MMM yyyy")
+        val date = Date()
+        return dateFormat.format(date)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun currentTime(): String {
+        val dateFormat = SimpleDateFormat("HH:mm")
+        val date = Date()
+        return dateFormat.format(date)
     }
 }

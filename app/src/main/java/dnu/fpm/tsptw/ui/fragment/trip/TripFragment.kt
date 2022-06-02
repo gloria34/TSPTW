@@ -20,6 +20,7 @@ import dnu.fpm.tsptw.databinding.ItemMapMarkerBinding
 import dnu.fpm.tsptw.helpers.AntTsp
 import dnu.fpm.tsptw.ui.base.BaseFragment
 import dnu.fpm.tsptw.utils.DateUtils
+import dnu.fpm.tsptw.utils.DeviceUtils
 
 
 class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -172,12 +173,12 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
         val measuredHeight = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY)
         view.measure(measuredWidth, measuredHeight)
         view.layout(
-            0, 0, DateUtils.convertDpToPixel(25F, context).toInt(),
-            DateUtils.convertDpToPixel(36F, context).toInt()
+            0, 0, DeviceUtils.convertDpToPixel(25F, context).toInt(),
+            DeviceUtils.convertDpToPixel(36F, context).toInt()
         )
         val b = Bitmap.createBitmap(
-            DateUtils.convertDpToPixel(25F, context).toInt(),
-            DateUtils.convertDpToPixel(36F, context).toInt(), Bitmap.Config.ARGB_8888
+            DeviceUtils.convertDpToPixel(25F, context).toInt(),
+            DeviceUtils.convertDpToPixel(36F, context).toInt(), Bitmap.Config.ARGB_8888
         )
         val c = Canvas(b)
         view.draw(c)

@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="dnu.fpm.tsptw.ui.fragment.home.HomeViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,7 +47,7 @@
                     style="@style/Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="16:00"
+                    android:text="@{viewModel.currentTime}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_12"
-                    android:text="12 mar 2022"
+                    android:text="@{viewModel.currentDate}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/time_text_view" />
@@ -80,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24"
             android:gravity="center"
-            android:text="Trips for today"
+            android:text="@string/trips_for_today"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <androidx.recyclerview.widget.RecyclerView

@@ -29,6 +29,8 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         binding.createNewTripButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_createNewTripFragment)
         }
