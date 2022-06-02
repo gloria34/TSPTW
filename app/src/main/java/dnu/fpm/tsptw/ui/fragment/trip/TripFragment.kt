@@ -3,11 +3,13 @@ package dnu.fpm.tsptw.ui.fragment.trip
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -62,18 +64,49 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
                         )
                     )
                     for (point in trip.points) {
+                        val currentLatLng = LatLng(
+                            point.latitude,
+                            point.longitude
+                        )
                         val marker: Marker? = googleMap!!.addMarker(
                             MarkerOptions().position(
-                                LatLng(
-                                    point.latitude,
-                                    point.longitude
-                                )
+                                currentLatLng
                             ).draggable(true)
-                                .icon(getMarkerIcon(anttsp.bestTour[trip.points.indexOf(point)]))
+                                .icon(
+                                    getMarkerIcon(
+                                        anttsp.bestTour.indexOf(
+                                            trip.points.indexOf(
+                                                point
+                                            )
+                                        )
+                                    )
+                                )
                         )
                         if (marker != null) {
                             marker.tag = point
                         }
+                        val index = anttsp.bestTour.indexOf(trip.points.indexOf(point))
+                        val nextLatLng = if (index + 1 == trip.points.size) LatLng(
+                            trip.points[anttsp.bestTour[0]].latitude,
+                            trip.points[anttsp.bestTour[0]].longitude
+                        ) else LatLng(
+                            trip.points[anttsp.bestTour[index + 1]].latitude,
+                            trip.points[anttsp.bestTour[index + 1]].longitude
+                        )
+                        googleMap?.addPolyline(
+                            PolylineOptions()
+                                .clickable(true)
+                                .add(
+                                    currentLatLng,
+                                    nextLatLng
+                                )
+                                .color(
+                                    ContextCompat.getColor(
+                                        requireContext(),
+                                        R.color.dark_violet
+                                    )
+                                )
+                        )
                     }
                     googleMap!!.setOnMapClickListener {
 
