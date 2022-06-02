@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -17,9 +18,11 @@ import com.google.android.gms.maps.model.*
 import com.google.maps.android.SphericalUtil
 import dnu.fpm.tsptw.R
 import dnu.fpm.tsptw.data.entity.DataSet
+import dnu.fpm.tsptw.data.model.Point
 import dnu.fpm.tsptw.databinding.FragmentTripBinding
 import dnu.fpm.tsptw.databinding.ItemMapMarkerBinding
 import dnu.fpm.tsptw.helpers.AntTsp
+import dnu.fpm.tsptw.ui.adapter.PointsAdapter
 import dnu.fpm.tsptw.ui.base.BaseFragment
 import dnu.fpm.tsptw.utils.DateUtils
 import dnu.fpm.tsptw.utils.DeviceUtils
@@ -41,6 +44,20 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.isListVisible = false
+        binding.mapImageView.setOnClickListener {
+            binding.isListVisible = false
+            binding.mapImageView.setImageResource(R.drawable.ic_map_checked)
+            binding.listImageView.setImageResource(R.drawable.ic_list_unchecked)
+        }
+        binding.listImageView.setOnClickListener {
+            binding.isListVisible = true
+            binding.mapImageView.setImageResource(R.drawable.ic_map_unchecked)
+            binding.listImageView.setImageResource(R.drawable.ic_list_checked)
+        }
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
         initMap()
         val trip: DataSet? = arguments?.getSerializable("trip") as DataSet?
         if (trip != null) {
@@ -68,6 +85,7 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
                             point.latitude,
                             point.longitude
                         )
+                        point.index = anttsp.bestTour.indexOf(trip.points.indexOf(point))
                         val marker: Marker? = googleMap!!.addMarker(
                             MarkerOptions().position(
                                 currentLatLng
@@ -85,13 +103,12 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
                         if (marker != null) {
                             marker.tag = point
                         }
-                        val index = anttsp.bestTour.indexOf(trip.points.indexOf(point))
-                        val nextLatLng = if (index + 1 == trip.points.size) LatLng(
+                        val nextLatLng = if (point.index + 1 == trip.points.size) LatLng(
                             trip.points[anttsp.bestTour[0]].latitude,
                             trip.points[anttsp.bestTour[0]].longitude
                         ) else LatLng(
-                            trip.points[anttsp.bestTour[index + 1]].latitude,
-                            trip.points[anttsp.bestTour[index + 1]].longitude
+                            trip.points[anttsp.bestTour[point.index + 1]].latitude,
+                            trip.points[anttsp.bestTour[point.index + 1]].longitude
                         )
                         googleMap?.addPolyline(
                             PolylineOptions()
@@ -108,10 +125,7 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
                                 )
                         )
                     }
-                    googleMap!!.setOnMapClickListener {
-
-                    }
-                    googleMap!!.setOnMarkerClickListener(this)
+                    binding.pointsRecyclerView.adapter = PointsAdapter(trip.points)
                 } else {
                     shouldShowPoints = true
                 }
@@ -157,11 +171,11 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
                     marker.tag = point
                 }
             }
-            p0.setOnMapClickListener {
-
-            }
-            p0.setOnMarkerClickListener(this)
         }
+        p0.setOnMapClickListener {
+            binding.pointLayout.root.visibility = View.GONE
+        }
+        p0.setOnMarkerClickListener(this)
     }
 
     private fun initMap() {
@@ -219,6 +233,11 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
+        val point: Point? = p0.tag as Point?
+        if (point != null) {
+            binding.pointLayout.point = point
+            binding.pointLayout.root.visibility = View.VISIBLE
+        }
         return true
     }
 }

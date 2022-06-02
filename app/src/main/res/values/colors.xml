@@ -11,4 +11,5 @@
     <color name="light_grey">#F2F2F6</color>
     <color name="grey">#C4C4C4</color>
     <color name="text">@color/black</color>
+    <color name="selector">@color/white</color>
 </resources>

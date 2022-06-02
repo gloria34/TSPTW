@@ -2,9 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="point"
+            type="dnu.fpm.tsptw.data.model.Point" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_10"
         android:background="@drawable/bg_card">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -15,6 +23,7 @@
             android:background="@drawable/bg_number"
             android:gravity="center"
             android:paddingHorizontal="@dimen/padding_24"
+            android:text="@{point.stringIndex}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +38,7 @@
             android:drawableStart="@drawable/ic_marker"
             android:drawablePadding="@dimen/padding_12"
             android:drawableTint="?attr/iconTint"
+            android:text="@{point.address}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/number_text_view"
             app:layout_constraintTop_toTopOf="parent" />

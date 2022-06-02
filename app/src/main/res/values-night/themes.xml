@@ -14,6 +14,7 @@
         <item name="editTextColor">@color/white</item>
         <item name="boxStrokeColor">@color/white</item>
         <item name="android:windowBackground">@color/dark_violet</item>
+        <item name="colorControlNormal">@color/dark_violet</item>
     </style>
 
     <style name="Title">

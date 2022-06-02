@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
+            name="isListVisible"
+            type="boolean" />
+
+        <variable
             name="trip"
             type="dnu.fpm.tsptw.data.entity.DataSet" />
+
+        <variable
+            name="viewModel"
+            type="dnu.fpm.tsptw.ui.fragment.trip.TripViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_24"
+            android:visibility="@{isListVisible?View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
 
@@ -46,6 +58,7 @@
             android:id="@+id/shortest_distance_text_view"
             style="@style/RegularText"
             android:layout_width="wrap_content"
+            android:visibility="@{isListVisible?View.GONE:View.VISIBLE}"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12"
             android:textColor="@color/dark_violet"
@@ -57,9 +70,54 @@
             layout="@layout/item_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
             android:layout_marginBottom="5dp"
-            android:visibility="gone"
+            android:visibility="@{isListVisible?View.GONE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/points_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:visibility="@{isListVisible?View.VISIBLE:View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view"
+            tools:listitem="@layout/item_point" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/point_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/map_image_view"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/ic_map_checked" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="?colorControlNormal" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/list_image_view"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/ic_list_unchecked" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

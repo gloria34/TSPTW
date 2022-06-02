@@ -13,5 +13,5 @@ class CreateNewTripViewModel : ViewModel() {
         //TODO call repository method
     }
 
-    private fun emptyPoint(): Point = Point(0.0, 0.0, false)
+    private fun emptyPoint(): Point = Point(0.0, 0.0, 0)
 }

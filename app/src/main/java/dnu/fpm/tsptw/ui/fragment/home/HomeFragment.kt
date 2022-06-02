@@ -38,11 +38,11 @@ class HomeFragment : BaseFragment() {
         trips.add(
             DataSet(
                 points = arrayListOf(
-                    Point(30.233417, -92.101965, false),
-                    Point(30.233155, -92.014507, false),
-                    Point(30.201409, -91.999563, false),
-                    Point(30.167296, -92.036249, false),
-                    Point(30.109821, -92.240990, false)
+                    Point(30.233417, -92.101965, 0),
+                    Point(30.233155, -92.014507, 0),
+                    Point(30.201409, -91.999563, 0),
+                    Point(30.167296, -92.036249, 0),
+                    Point(30.109821, -92.240990, 0)
                 )
             )
         )
