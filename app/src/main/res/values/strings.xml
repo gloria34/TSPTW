@@ -9,4 +9,8 @@
     <string name="date">Date</string>
     <string name="add_new_point">Add new point</string>
     <string name="trip_list">Trip list</string>
+    <string name="trip_name_must_be_not_empty">Trip name must be not empty</string>
+    <string name="latitude_must_be_a_number_between_90_and_90">Latitude must be a number between -90 and 90</string>
+    <string name="longitude_must_be_a_number_between_180_and_180">Longitude must a number between -180 and 180</string>
+    <string name="invalid_number_format">Invalid number format</string>
 </resources>

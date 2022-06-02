@@ -55,4 +55,11 @@ dependencies {
 
     //data binding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
+
+    //rx
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.18'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    //coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 }
