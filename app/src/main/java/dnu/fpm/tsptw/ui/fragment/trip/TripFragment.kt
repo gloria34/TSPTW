@@ -177,8 +177,86 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
             4 -> {
                 itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_4)
             }
-            else -> {
+            5 -> {
                 itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_5)
+            }
+            6 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_6)
+            }
+            7 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_7)
+            }
+            8 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_8)
+            }
+            9 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_9)
+            }
+            10 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_10)
+            }
+            11 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_11)
+            }
+            12 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_12)
+            }
+            13 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_13)
+            }
+            14 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_14)
+            }
+            15 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_15)
+            }
+            16 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_16)
+            }
+            17 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_17)
+            }
+            18 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_18)
+            }
+            19 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_19)
+            }
+            20 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_20)
+            }
+            21 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_21)
+            }
+            22 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_22)
+            }
+            23 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_23)
+            }
+            24 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_24)
+            }
+            25 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_25)
+            }
+            26 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_26)
+            }
+            27 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_27)
+            }
+            28 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_28)
+            }
+            29 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_29)
+            }
+            30 -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker_30)
+            }
+            else -> {
+                itemMapMarkerBinding.marker.setImageResource(R.drawable.ic_map_marker)
             }
         }
         return BitmapDescriptorFactory.fromBitmap(
