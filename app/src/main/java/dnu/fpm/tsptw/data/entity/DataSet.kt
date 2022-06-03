@@ -5,7 +5,7 @@ import dnu.fpm.tsptw.utils.DateUtils
 import java.io.Serializable
 
 class DataSet(
-    var tripName: String = "Custom data ${System.currentTimeMillis()}",
+    var tripName: String = "",
     var date: Long = System.currentTimeMillis(),
     var points: ArrayList<Point>
 ) : Serializable {

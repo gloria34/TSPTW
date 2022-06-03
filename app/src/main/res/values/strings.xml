@@ -14,4 +14,6 @@
     <string name="longitude_must_be_a_number_between_180_and_180">Longitude must a number between -180 and 180</string>
     <string name="invalid_number_format">Invalid number format</string>
     <string name="trips_for_today">Trips for today</string>
+    <string name="your_trip_is_too_short">Your trip is too short</string>
+    <string name="no_trips_for_today">No trips for today</string>
 </resources>

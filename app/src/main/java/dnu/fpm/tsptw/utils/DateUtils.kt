@@ -32,4 +32,11 @@ object DateUtils {
         val date = Date()
         return dateFormat.format(date)
     }
+
+    @SuppressLint("SimpleDateFormat")
+    fun formattedYearMonth(milliseconds: Long): String {
+        val dateFormat = SimpleDateFormat("MMM yyyy", Locale.ENGLISH)
+        val date = Date(milliseconds)
+        return dateFormat.format(date)
+    }
 }

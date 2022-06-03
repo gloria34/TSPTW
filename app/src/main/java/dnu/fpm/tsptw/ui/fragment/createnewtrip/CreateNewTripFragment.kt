@@ -18,7 +18,6 @@ import dnu.fpm.tsptw.databinding.ItemCreatePointBinding
 import dnu.fpm.tsptw.ui.base.BaseFragment
 import java.util.*
 
-
 class CreateNewTripFragment : BaseFragment() {
     private val calendar: Calendar = Calendar.getInstance()
     private val itemCreatePointBindings: ArrayList<ItemCreatePointBinding> = ArrayList()
@@ -49,8 +48,9 @@ class CreateNewTripFragment : BaseFragment() {
         }
         binding.saveTextView.setOnClickListener {
             if (validateData()) {
+                viewModel.dataSet.value?.tripName = binding.nameEditText.text.toString()
                 saveDataSet()
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_createNewTripFragment_to_homeFragment)
             }
         }
         binding.backButton.setOnClickListener {
@@ -130,7 +130,7 @@ class CreateNewTripFragment : BaseFragment() {
 
     private fun validateData(): Boolean {
         var isDataValid = true
-        if (viewModel.dataSet.value?.tripName?.isEmpty() == true) {
+        if (binding.nameEditText.text.toString().isEmpty()) {
             isDataValid = false
             showEditTextError(binding.nameEditText, R.string.trip_name_must_be_not_empty)
         }
@@ -171,7 +171,11 @@ class CreateNewTripFragment : BaseFragment() {
             }
         }
         if (itemCreatePointBindings.isEmpty() || itemCreatePointBindings.size < 3) {
-            Toast.makeText(requireContext(), "Your trip is too short", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.your_trip_is_too_short),
+                Toast.LENGTH_SHORT
+            ).show()
             isDataValid = false
         }
         return isDataValid

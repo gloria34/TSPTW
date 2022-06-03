@@ -2,6 +2,7 @@ package dnu.fpm.tsptw.data.local
 
 import com.google.gson.Gson
 import dnu.fpm.tsptw.data.entity.DataSet
+import dnu.fpm.tsptw.data.model.Point
 
 object PreferencesRepository {
     var dataSets: ArrayList<DataSet>
@@ -13,7 +14,9 @@ object PreferencesRepository {
                     dataSets.add(Gson().fromJson(string, DataSet::class.java))
                 }
             }
-            //TODO add mock data
+            if (dataSets.isEmpty()) {
+                dataSets.addAll(getMockTrips())
+            }
             return dataSets
         }
         set(dataSets) {
@@ -26,4 +29,21 @@ object PreferencesRepository {
                 strings
             )
         }
+
+    private fun getMockTrips(): ArrayList<DataSet> {
+        val trips = ArrayList<DataSet>()
+        trips.add(
+            DataSet(
+                date = System.currentTimeMillis() - 2592000000L,
+                points = arrayListOf(
+                    Point(30.233417, -92.101965, 0),
+                    Point(30.233155, -92.014507, 0),
+                    Point(30.201409, -91.999563, 0),
+                    Point(30.167296, -92.036249, 0),
+                    Point(30.109821, -92.240990, 0)
+                )
+            )
+        )
+        return trips
+    }
 }
