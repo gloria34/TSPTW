@@ -34,6 +34,7 @@ object PreferencesRepository {
         val trips = ArrayList<DataSet>()
         trips.add(
             DataSet(
+                tripName = "Lafayette",
                 date = System.currentTimeMillis() - 2592000000L,
                 points = arrayListOf(
                     Point(30.233417, -92.101965, 0),
