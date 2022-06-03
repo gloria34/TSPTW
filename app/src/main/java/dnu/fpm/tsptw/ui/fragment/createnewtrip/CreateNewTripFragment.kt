@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import dnu.fpm.tsptw.R
+import dnu.fpm.tsptw.data.model.Point
 import dnu.fpm.tsptw.databinding.FragmentCreateNewTripBinding
 import dnu.fpm.tsptw.databinding.ItemCreatePointBinding
 import dnu.fpm.tsptw.ui.base.BaseFragment
@@ -47,12 +49,27 @@ class CreateNewTripFragment : BaseFragment() {
         }
         binding.saveTextView.setOnClickListener {
             if (validateData()) {
+                saveDataSet()
                 findNavController().popBackStack()
             }
         }
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    private fun saveDataSet() {
+        viewModel.dataSet.value?.points?.clear()
+        for (itemCreatePointBinding in itemCreatePointBindings) {
+            viewModel.dataSet.value?.points?.add(
+                Point(
+                    itemCreatePointBinding.latitudeEditText.text.toString().toDouble(),
+                    itemCreatePointBinding.longitudeEditText.text.toString().toDouble(),
+                    0
+                )
+            )
+        }
+        viewModel.saveDataSet()
     }
 
     private fun showPoints() {
@@ -67,6 +84,7 @@ class CreateNewTripFragment : BaseFragment() {
         val itemCreatePointBinding = ItemCreatePointBinding.inflate(layoutInflater)
         itemCreatePointBinding.removeImageView.setOnClickListener {
             binding.pointsLinerLayout.removeView(itemCreatePointBinding.root)
+            itemCreatePointBindings.remove(itemCreatePointBinding)
         }
         itemCreatePointBindings.add(itemCreatePointBinding)
         binding.pointsLinerLayout.addView(itemCreatePointBinding.root)
@@ -151,6 +169,10 @@ class CreateNewTripFragment : BaseFragment() {
                 )
                 isDataValid = false
             }
+        }
+        if (itemCreatePointBindings.isEmpty() || itemCreatePointBindings.size < 3) {
+            Toast.makeText(requireContext(), "Your trip is too short", Toast.LENGTH_SHORT).show()
+            isDataValid = false
         }
         return isDataValid
     }

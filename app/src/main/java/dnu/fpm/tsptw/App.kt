@@ -1,6 +1,7 @@
 package dnu.fpm.tsptw
 
 import android.app.Application
+import dnu.fpm.tsptw.data.local.PreferencesHelper
 
 class App : Application() {
 
@@ -11,5 +12,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        PreferencesHelper.loadPreferencesHelper(this, packageName)
     }
 }
