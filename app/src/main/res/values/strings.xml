@@ -16,4 +16,6 @@
     <string name="trips_for_today">Trips for today</string>
     <string name="your_trip_is_too_short">Your trip is too short</string>
     <string name="no_trips_for_today">No trips for today</string>
+    <string name="shortest_distance">\"Shortest distance: \"</string>
+    <string name="km">\" km\"</string>
 </resources>

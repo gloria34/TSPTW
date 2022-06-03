@@ -1,36 +1,36 @@
 package dnu.fpm.tsptw.ui.fragment.trip
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
-import com.google.maps.android.SphericalUtil
 import dnu.fpm.tsptw.R
 import dnu.fpm.tsptw.data.entity.DataSet
 import dnu.fpm.tsptw.data.model.Point
 import dnu.fpm.tsptw.databinding.FragmentTripBinding
 import dnu.fpm.tsptw.databinding.ItemMapMarkerBinding
-import dnu.fpm.tsptw.helpers.AntTsp
 import dnu.fpm.tsptw.ui.adapter.PointsAdapter
 import dnu.fpm.tsptw.ui.base.BaseFragment
-import dnu.fpm.tsptw.utils.DateUtils
 import dnu.fpm.tsptw.utils.DeviceUtils
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     lateinit var binding: FragmentTripBinding
-    val anttsp = AntTsp()
+    lateinit var viewModel: TripViewModel
     var googleMap: GoogleMap? = null
     var shouldShowPoints = false
     override fun onCreateView(
@@ -38,6 +38,7 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel = ViewModelProvider(this).get(TripViewModel::class.java)
         binding = FragmentTripBinding.inflate(inflater)
         return binding.root
     }
@@ -66,66 +67,12 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
             for (point in trip.points) {
                 points.add(LatLng(point.latitude, point.longitude))
             }
-            val mainHandler = Handler(requireContext().mainLooper);
+            val mainHandler = Handler(requireContext().mainLooper)
 
             val myRunnable = Runnable {
-                anttsp.readGraph(distances(points))
-                anttsp.solve()
+                viewModel.solve(points)
                 if (googleMap != null) {
-                    binding.shortestDistanceTextView.text =
-                        "Shortest distance: " + (anttsp.bestTourLength / 1000).toInt() + " km"
-                    googleMap!!.moveCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                            LatLng(trip.points[0].latitude, trip.points[0].longitude),
-                            14.0F
-                        )
-                    )
-                    for (point in trip.points) {
-                        val currentLatLng = LatLng(
-                            point.latitude,
-                            point.longitude
-                        )
-                        point.index = anttsp.bestTour.indexOf(trip.points.indexOf(point))
-                        val marker: Marker? = googleMap!!.addMarker(
-                            MarkerOptions().position(
-                                currentLatLng
-                            ).draggable(true)
-                                .icon(
-                                    getMarkerIcon(
-                                        anttsp.bestTour.indexOf(
-                                            trip.points.indexOf(
-                                                point
-                                            )
-                                        )
-                                    )
-                                )
-                        )
-                        if (marker != null) {
-                            marker.tag = point
-                        }
-                        val nextLatLng = if (point.index + 1 == trip.points.size) LatLng(
-                            trip.points[anttsp.bestTour[0]].latitude,
-                            trip.points[anttsp.bestTour[0]].longitude
-                        ) else LatLng(
-                            trip.points[anttsp.bestTour[point.index + 1]].latitude,
-                            trip.points[anttsp.bestTour[point.index + 1]].longitude
-                        )
-                        googleMap?.addPolyline(
-                            PolylineOptions()
-                                .clickable(true)
-                                .add(
-                                    currentLatLng,
-                                    nextLatLng
-                                )
-                                .color(
-                                    ContextCompat.getColor(
-                                        requireContext(),
-                                        R.color.dark_violet
-                                    )
-                                )
-                        )
-                    }
-                    binding.pointsRecyclerView.adapter = PointsAdapter(trip.points)
+                    showPoints(trip)
                 } else {
                     shouldShowPoints = true
                 }
@@ -134,43 +81,72 @@ class TripFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClick
         }
     }
 
-    fun distances(points: ArrayList<LatLng>): String {
-        var result = ""
-        for (point1 in points) {
-            for (point2 in points) {
-                result += "${SphericalUtil.computeDistanceBetween(point1, point2)} "
+    @SuppressLint("SetTextI18n")
+    private fun showPoints(trip: DataSet) {
+        binding.shortestDistanceTextView.text =
+            getString(R.string.shortest_distance) + (viewModel.antTsp.bestTourLength / 1000).toInt() + getString(
+                R.string.km
+            )
+        googleMap!!.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng(trip.points[0].latitude, trip.points[0].longitude),
+                14.0F
+            )
+        )
+        for (point in trip.points) {
+            val currentLatLng = LatLng(
+                point.latitude,
+                point.longitude
+            )
+            point.index = viewModel.antTsp.bestTour.indexOf(trip.points.indexOf(point))
+            val marker: Marker? = googleMap!!.addMarker(
+                MarkerOptions().position(
+                    currentLatLng
+                ).draggable(true)
+                    .icon(
+                        getMarkerIcon(
+                            viewModel.antTsp.bestTour.indexOf(
+                                trip.points.indexOf(
+                                    point
+                                )
+                            )
+                        )
+                    )
+            )
+            if (marker != null) {
+                marker.tag = point
             }
-            result += "/"
+            val nextLatLng = if (point.index + 1 == trip.points.size) LatLng(
+                trip.points[viewModel.antTsp.bestTour[0]].latitude,
+                trip.points[viewModel.antTsp.bestTour[0]].longitude
+            ) else LatLng(
+                trip.points[viewModel.antTsp.bestTour[point.index + 1]].latitude,
+                trip.points[viewModel.antTsp.bestTour[point.index + 1]].longitude
+            )
+            googleMap?.addPolyline(
+                PolylineOptions()
+                    .clickable(true)
+                    .add(
+                        currentLatLng,
+                        nextLatLng
+                    )
+                    .color(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.dark_violet
+                        )
+                    )
+            )
         }
-        return result
+        Collections.sort(trip.points, PointComparator())
+        binding.pointsRecyclerView.adapter = PointsAdapter(trip.points)
     }
 
     override fun onMapReady(p0: GoogleMap) {
         googleMap = p0
         val trip: DataSet? = arguments?.getSerializable("trip") as DataSet?
         if (trip != null && shouldShowPoints) {
-            binding.shortestDistanceTextView.text =
-                "Shortest distance: " + (anttsp.bestTourLength / 1000).toInt() + " km"
-            p0.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                    LatLng(trip.points[0].latitude, trip.points[0].longitude),
-                    14.0F
-                )
-            )
-            for (point in trip.points) {
-                val marker: Marker? = p0.addMarker(
-                    MarkerOptions().position(
-                        LatLng(
-                            point.latitude,
-                            point.longitude
-                        )
-                    ).draggable(true)
-                        .icon(getMarkerIcon(anttsp.bestTour[trip.points.indexOf(point)]))
-                )
-                if (marker != null) {
-                    marker.tag = point
-                }
-            }
+            showPoints(trip)
         }
         p0.setOnMapClickListener {
             binding.pointLayout.root.visibility = View.GONE

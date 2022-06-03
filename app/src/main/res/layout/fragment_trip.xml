@@ -61,6 +61,7 @@
             android:visibility="@{isListVisible?View.GONE:View.VISIBLE}"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_10"
             android:textColor="@color/dark_violet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/map_view" />
