@@ -6,13 +6,24 @@ plugins {
 
 android {
     compileSdk 31
+    def versionMajor = 0
+    def versionMinor = 1
+
+    signingConfigs {
+        release {
+            keyAlias 'trip-builder'
+            keyPassword 'trip-builder'
+            storeFile file('../trip-builder.jks')
+            storePassword 'trip-builder'
+        }
+    }
 
     defaultConfig {
-        applicationId "dnu.fpm.tsptw"
+        applicationId "dnu.fam.tsp"
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode versionMajor * 1000 + versionMinor
+        versionName "${versionMajor}.${versionMinor}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,6 +32,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -32,6 +44,14 @@ android {
     }
     dataBinding {
         enabled = true
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def file = output.outputFile
+            outputFileName = new File(file.name.replace(".apk", "-"
+                    + versionName
+                    + ".apk").replace("app", "trip-builder"))
+        }
     }
 }
 

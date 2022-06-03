@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TSPTW</string>
+    <string name="app_name">Trip builder</string>
     <string name="home">Номе</string>
     <string name="create_new_trip">Create new trip</string>
     <string name="latitude">Latitude</string>
